@@ -28,7 +28,7 @@
 本仓库即一个独立 skill，直接克隆到 Claude Code 的 skills 目录：
 
 ```bash
-git clone https://github.com/<your-name>/national-team-position.git \
+git clone https://github.com/Xiaoyuan-Liu/national-team-position.git \
   ~/.claude/skills/national-team-position
 ```
 
