@@ -210,8 +210,12 @@ def make_charts(data, prices, out_dir):
         _draw(ax, g, dts, sh, pdf)
     fig.suptitle("国家队各宽基 ETF 份额 vs 指数走势（估计中央汇金持仓）",
                  fontsize=17, fontweight="bold")
-    fig.autofmt_xdate(rotation=45)
-    plt.tight_layout(rect=[0, 0, 1, 0.97])
+    # autofmt_xdate 会隐藏非底行子图的日期标签，逐轴设置确保六张图都显示
+    for ax in axes.flat:
+        ax.tick_params(axis="x", labelbottom=True, labelrotation=45)
+        for label in ax.get_xticklabels():
+            label.set_horizontalalignment("right")
+    fig.tight_layout(rect=[0, 0, 1, 0.97], h_pad=3.0)
     p = os.path.join(out_dir, "national_team_overview.png")
     plt.savefig(p, dpi=140); plt.close(fig)
     print(f"  总图 -> {p}")
